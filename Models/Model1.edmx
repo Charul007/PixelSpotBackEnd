@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PixelSpotModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PixelSpotModelStoreContainer">
+    <EntitySet Name="Collection_category" EntityType="PixelSpotModel.Store.Collection_category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Downlaods" EntityType="PixelSpotModel.Store.Downlaods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Liked_photos" EntityType="PixelSpotModel.Store.Liked_photos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Photo_category" EntityType="PixelSpotModel.Store.Photo_category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Photos" EntityType="PixelSpotModel.Store.Photos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Spam_photos" EntityType="PixelSpotModel.Store.Spam_photos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_collection" EntityType="PixelSpotModel.Store.User_collection" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="PixelSpotModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_User_collection_CC" Association="PixelSpotModel.Store.FK_User_collection_CC">
+      <End Role="Collection_category" EntitySet="Collection_category" />
+      <End Role="User_collection" EntitySet="User_collection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Downlaods_ToPhoto" Association="PixelSpotModel.Store.FK_Downlaods_ToPhoto">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Downlaods" EntitySet="Downlaods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Downlaods_ToUser" Association="PixelSpotModel.Store.FK_Downlaods_ToUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Downlaods" EntitySet="Downlaods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liked_photos_Photos" Association="PixelSpotModel.Store.FK_Liked_photos_Photos">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Liked_photos" EntitySet="Liked_photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liked_photos_Users" Association="PixelSpotModel.Store.FK_Liked_photos_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Liked_photos" EntitySet="Liked_photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photos_PCategory" Association="PixelSpotModel.Store.FK_Photos_PCategory">
+      <End Role="Photo_category" EntitySet="Photo_category" />
+      <End Role="Photos" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photos_UCollection" Association="PixelSpotModel.Store.FK_Photos_UCollection">
+      <End Role="User_collection" EntitySet="User_collection" />
+      <End Role="Photos" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photos_Users" Association="PixelSpotModel.Store.FK_Photos_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Photos" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Spam_photos_Photo" Association="PixelSpotModel.Store.FK_Spam_photos_Photo">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Spam_photos" EntitySet="Spam_photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_collection_Users" Association="PixelSpotModel.Store.FK_User_collection_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_collection" EntitySet="User_collection" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Collection_category">
+    <Key>
+      <PropertyRef Name="cc_id" />
+    </Key>
+    <Property Name="cc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cc_name" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Downlaods">
+    <Key>
+      <PropertyRef Name="d_id" />
+    </Key>
+    <Property Name="d_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_id" Type="int" Nullable="true" />
+    <Property Name="u_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Liked_photos">
+    <Key>
+      <PropertyRef Name="l_id" />
+    </Key>
+    <Property Name="l_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="int" Nullable="false" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Photo_category">
+    <Key>
+      <PropertyRef Name="pc_id" />
+    </Key>
+    <Property Name="pc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pc_name" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Photos">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="p_state" Type="bit" Nullable="false" />
+    <Property Name="p_degree" Type="bit" Nullable="false" />
+    <Property Name="u_id" Type="int" Nullable="false" />
+    <Property Name="uc_id" Type="int" Nullable="true" />
+    <Property Name="pc_id" Type="int" Nullable="true" />
+    <Property Name="p_datetime" Type="datetime" Nullable="false" />
+    <Property Name="p_profilePhoto" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Spam_photos">
+    <Key>
+      <PropertyRef Name="sp_id" />
+    </Key>
+    <Property Name="sp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sp_details" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_collection">
+    <Key>
+      <PropertyRef Name="uc_id" />
+    </Key>
+    <Property Name="uc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="int" Nullable="true" />
+    <Property Name="cc_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_first_name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="u_last_name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="u_email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="u_password" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="u_address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="u_mobile" Type="nchar" Nullable="true" MaxLength="10" />
+    <Property Name="u_about" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="u_role" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="u_status" Type="bit" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_User_collection_CC">
+    <End Role="Collection_category" Type="PixelSpotModel.Store.Collection_category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_collection" Type="PixelSpotModel.Store.User_collection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collection_category">
+        <PropertyRef Name="cc_id" />
+      </Principal>
+      <Dependent Role="User_collection">
+        <PropertyRef Name="cc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Downlaods_ToPhoto">
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="0..1" />
+    <End Role="Downlaods" Type="PixelSpotModel.Store.Downlaods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="Downlaods">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Downlaods_ToUser">
+    <End Role="Users" Type="PixelSpotModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Downlaods" Type="PixelSpotModel.Store.Downlaods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="Downlaods">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liked_photos_Photos">
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="1" />
+    <End Role="Liked_photos" Type="PixelSpotModel.Store.Liked_photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="Liked_photos">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liked_photos_Users">
+    <End Role="Users" Type="PixelSpotModel.Store.Users" Multiplicity="1" />
+    <End Role="Liked_photos" Type="PixelSpotModel.Store.Liked_photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="Liked_photos">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photos_PCategory">
+    <End Role="Photo_category" Type="PixelSpotModel.Store.Photo_category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo_category">
+        <PropertyRef Name="pc_id" />
+      </Principal>
+      <Dependent Role="Photos">
+        <PropertyRef Name="pc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photos_UCollection">
+    <End Role="User_collection" Type="PixelSpotModel.Store.User_collection" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_collection">
+        <PropertyRef Name="uc_id" />
+      </Principal>
+      <Dependent Role="Photos">
+        <PropertyRef Name="uc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photos_Users">
+    <End Role="Users" Type="PixelSpotModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="Photos">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Spam_photos_Photo">
+    <End Role="Photos" Type="PixelSpotModel.Store.Photos" Multiplicity="1" />
+    <End Role="Spam_photos" Type="PixelSpotModel.Store.Spam_photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="Spam_photos">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_collection_Users">
+    <End Role="Users" Type="PixelSpotModel.Store.Users" Multiplicity="0..1" />
+    <End Role="User_collection" Type="PixelSpotModel.Store.User_collection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="User_collection">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PixelSpotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Collection_category">
+          <Key>
+            <PropertyRef Name="cc_id" />
+          </Key>
+          <Property Name="cc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cc_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User_collection" Relationship="Self.FK_User_collection_CC" FromRole="Collection_category" ToRole="User_collection" />
+        </EntityType>
+        <EntityType Name="Downlaod">
+          <Key>
+            <PropertyRef Name="d_id" />
+          </Key>
+          <Property Name="d_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_id" Type="Int32" />
+          <Property Name="u_id" Type="Int32" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK_Downlaods_ToPhoto" FromRole="Downlaods" ToRole="Photos" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Downlaods_ToUser" FromRole="Downlaods" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Liked_photos">
+          <Key>
+            <PropertyRef Name="l_id" />
+          </Key>
+          <Property Name="l_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK_Liked_photos_Photos" FromRole="Liked_photos" ToRole="Photos" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Liked_photos_Users" FromRole="Liked_photos" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Photo_category">
+          <Key>
+            <PropertyRef Name="pc_id" />
+          </Key>
+          <Property Name="pc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pc_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_PCategory" FromRole="Photo_category" ToRole="Photos" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_state" Type="Boolean" Nullable="false" />
+          <Property Name="p_degree" Type="Boolean" Nullable="false" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="uc_id" Type="Int32" />
+          <Property Name="pc_id" Type="Int32" />
+          <Property Name="p_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Downlaods" Relationship="Self.FK_Downlaods_ToPhoto" FromRole="Photos" ToRole="Downlaods" />
+          <NavigationProperty Name="Liked_photos" Relationship="Self.FK_Liked_photos_Photos" FromRole="Photos" ToRole="Liked_photos" />
+          <NavigationProperty Name="Photo_category" Relationship="Self.FK_Photos_PCategory" FromRole="Photos" ToRole="Photo_category" />
+          <NavigationProperty Name="User_collection" Relationship="Self.FK_Photos_UCollection" FromRole="Photos" ToRole="User_collection" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Photos_Users" FromRole="Photos" ToRole="Users" />
+          <NavigationProperty Name="Spam_photos" Relationship="Self.FK_Spam_photos_Photo" FromRole="Photos" ToRole="Spam_photos" />
+          <Property Name="p_profilePhoto" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Spam_photos">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sp_details" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK_Spam_photos_Photo" FromRole="Spam_photos" ToRole="Photos" />
+        </EntityType>
+        <EntityType Name="User_collection">
+          <Key>
+            <PropertyRef Name="uc_id" />
+          </Key>
+          <Property Name="uc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" />
+          <Property Name="cc_id" Type="Int32" />
+          <NavigationProperty Name="Collection_category" Relationship="Self.FK_User_collection_CC" FromRole="User_collection" ToRole="Collection_category" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_UCollection" FromRole="User_collection" ToRole="Photos" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_collection_Users" FromRole="User_collection" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="u_mobile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="u_about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="u_role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_status" Type="Boolean" />
+          <NavigationProperty Name="Downlaods" Relationship="Self.FK_Downlaods_ToUser" FromRole="Users" ToRole="Downlaods" />
+          <NavigationProperty Name="Liked_photos" Relationship="Self.FK_Liked_photos_Users" FromRole="Users" ToRole="Liked_photos" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_Users" FromRole="Users" ToRole="Photos" />
+          <NavigationProperty Name="User_collection" Relationship="Self.FK_User_collection_Users" FromRole="Users" ToRole="User_collection" />
+        </EntityType>
+        <Association Name="FK_User_collection_CC">
+          <End Role="Collection_category" Type="Self.Collection_category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_collection" Type="Self.User_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection_category">
+              <PropertyRef Name="cc_id" />
+            </Principal>
+            <Dependent Role="User_collection">
+              <PropertyRef Name="cc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Downlaods_ToPhoto">
+          <End Role="Photos" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="Downlaods" Type="Self.Downlaod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Downlaods">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Downlaods_ToUser">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Downlaods" Type="Self.Downlaod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="Downlaods">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_photos_Photos">
+          <End Role="Photos" Type="Self.Photo" Multiplicity="1" />
+          <End Role="Liked_photos" Type="Self.Liked_photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Liked_photos">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_photos_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Liked_photos" Type="Self.Liked_photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="Liked_photos">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photos_PCategory">
+          <End Role="Photo_category" Type="Self.Photo_category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Photos" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo_category">
+              <PropertyRef Name="pc_id" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="pc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photos_UCollection">
+          <End Role="User_collection" Type="Self.User_collection" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Photos" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_collection">
+              <PropertyRef Name="uc_id" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="uc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photos_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Photos" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spam_photos_Photo">
+          <End Role="Photos" Type="Self.Photo" Multiplicity="1" />
+          <End Role="Spam_photos" Type="Self.Spam_photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="Spam_photos">
+              <PropertyRef Name="p_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_collection_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User_collection" Type="Self.User_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="User_collection">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PixelSpotEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Collection_category" EntityType="Self.Collection_category" />
+          <EntitySet Name="Downlaods" EntityType="Self.Downlaod" />
+          <EntitySet Name="Liked_photos" EntityType="Self.Liked_photos" />
+          <EntitySet Name="Photo_category" EntityType="Self.Photo_category" />
+          <EntitySet Name="Photos" EntityType="Self.Photo" />
+          <EntitySet Name="Spam_photos" EntityType="Self.Spam_photos" />
+          <EntitySet Name="User_collection" EntityType="Self.User_collection" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_User_collection_CC" Association="Self.FK_User_collection_CC">
+            <End Role="Collection_category" EntitySet="Collection_category" />
+            <End Role="User_collection" EntitySet="User_collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Downlaods_ToPhoto" Association="Self.FK_Downlaods_ToPhoto">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="Downlaods" EntitySet="Downlaods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Downlaods_ToUser" Association="Self.FK_Downlaods_ToUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Downlaods" EntitySet="Downlaods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_photos_Photos" Association="Self.FK_Liked_photos_Photos">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="Liked_photos" EntitySet="Liked_photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_photos_Users" Association="Self.FK_Liked_photos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Liked_photos" EntitySet="Liked_photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_PCategory" Association="Self.FK_Photos_PCategory">
+            <End Role="Photo_category" EntitySet="Photo_category" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_UCollection" Association="Self.FK_Photos_UCollection">
+            <End Role="User_collection" EntitySet="User_collection" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_Users" Association="Self.FK_Photos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spam_photos_Photo" Association="Self.FK_Spam_photos_Photo">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="Spam_photos" EntitySet="Spam_photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_collection_Users" Association="Self.FK_User_collection_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_collection" EntitySet="User_collection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PixelSpotModelStoreContainer" CdmEntityContainer="PixelSpotEntities">
+    <EntitySetMapping Name="Collection_category">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Collection_category)">
+        <MappingFragment StoreEntitySet="Collection_category">
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="cc_name" ColumnName="cc_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Downlaods">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Downlaod)">
+        <MappingFragment StoreEntitySet="Downlaods">
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liked_photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Liked_photos)">
+        <MappingFragment StoreEntitySet="Liked_photos">
+          <ScalarProperty Name="l_id" ColumnName="l_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo_category">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Photo_category)">
+        <MappingFragment StoreEntitySet="Photo_category">
+          <ScalarProperty Name="pc_id" ColumnName="pc_id" />
+          <ScalarProperty Name="pc_name" ColumnName="pc_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Photo)">
+        <MappingFragment StoreEntitySet="Photos">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="p_state" ColumnName="p_state" />
+          <ScalarProperty Name="p_degree" ColumnName="p_degree" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="uc_id" ColumnName="uc_id" />
+          <ScalarProperty Name="pc_id" ColumnName="pc_id" />
+          <ScalarProperty Name="p_datetime" ColumnName="p_datetime" />
+          <ScalarProperty Name="p_profilePhoto" ColumnName="p_profilePhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spam_photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Spam_photos)">
+        <MappingFragment StoreEntitySet="Spam_photos">
+          <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+          <ScalarProperty Name="sp_details" ColumnName="sp_details" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_collection">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.User_collection)">
+        <MappingFragment StoreEntitySet="User_collection">
+          <ScalarProperty Name="uc_id" ColumnName="uc_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_first_name" ColumnName="u_first_name" />
+          <ScalarProperty Name="u_last_name" ColumnName="u_last_name" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_mobile" ColumnName="u_mobile" />
+          <ScalarProperty Name="u_about" ColumnName="u_about" />
+          <ScalarProperty Name="u_role" ColumnName="u_role" />
+          <ScalarProperty Name="u_status" ColumnName="u_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
