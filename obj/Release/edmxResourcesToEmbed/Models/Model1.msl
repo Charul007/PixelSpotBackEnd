@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PixelSpotModelStoreContainer" CdmEntityContainer="PixelSpotEntities">
+    <EntitySetMapping Name="Collection_category">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Collection_category)">
+        <MappingFragment StoreEntitySet="Collection_category">
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="cc_name" ColumnName="cc_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Downlaods">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Downlaod)">
+        <MappingFragment StoreEntitySet="Downlaods">
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liked_photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Liked_photos)">
+        <MappingFragment StoreEntitySet="Liked_photos">
+          <ScalarProperty Name="l_id" ColumnName="l_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo_category">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Photo_category)">
+        <MappingFragment StoreEntitySet="Photo_category">
+          <ScalarProperty Name="pc_id" ColumnName="pc_id" />
+          <ScalarProperty Name="pc_name" ColumnName="pc_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Photo)">
+        <MappingFragment StoreEntitySet="Photos">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="p_state" ColumnName="p_state" />
+          <ScalarProperty Name="p_degree" ColumnName="p_degree" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="uc_id" ColumnName="uc_id" />
+          <ScalarProperty Name="pc_id" ColumnName="pc_id" />
+          <ScalarProperty Name="p_datetime" ColumnName="p_datetime" />
+          <ScalarProperty Name="p_profilePhoto" ColumnName="p_profilePhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spam_photos">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.Spam_photos)">
+        <MappingFragment StoreEntitySet="Spam_photos">
+          <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+          <ScalarProperty Name="sp_details" ColumnName="sp_details" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_collection">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.User_collection)">
+        <MappingFragment StoreEntitySet="User_collection">
+          <ScalarProperty Name="uc_id" ColumnName="uc_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(PixelSpotModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_first_name" ColumnName="u_first_name" />
+          <ScalarProperty Name="u_last_name" ColumnName="u_last_name" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_mobile" ColumnName="u_mobile" />
+          <ScalarProperty Name="u_about" ColumnName="u_about" />
+          <ScalarProperty Name="u_role" ColumnName="u_role" />
+          <ScalarProperty Name="u_status" ColumnName="u_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
